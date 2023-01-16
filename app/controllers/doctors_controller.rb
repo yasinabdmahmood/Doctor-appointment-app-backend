@@ -1,10 +1,7 @@
 class DoctorsController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def create
-  end
+  def create; end
 
-  def destroy
-  end
+  def destroy; end
 end
