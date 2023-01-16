@@ -1,5 +1,8 @@
 class DoctorsController < ApplicationController
-  def index; end
+  def index
+    @doctors = Doctor.all
+    render json: @doctors.to_json
+  end
 
   def create; end
 
