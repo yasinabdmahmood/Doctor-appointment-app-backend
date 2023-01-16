@@ -8,12 +8,12 @@ class DoctorsController < ApplicationController
     doctor = Doctor.new(user_params)
     if admin_user?
       if doctor.save
-        render json: { status: "success", message: "Doctor created successfully" }, status: :created
-      else 
-        render json: { status: "error", errors: doctor.errors }, status: :unprocessable_entity
+        render json: { status: 'success', message: 'Doctor created successfully' }, status: :created
+      else
+        render json: { status: 'error', errors: doctor.errors }, status: :unprocessable_entity
       end
     else
-      render json: { status: "error", message: "You are not admin" }, status: :unauthorized
+      render json: { status: 'error', message: 'You are not admin' }, status: :unauthorized
     end
   end
 
@@ -21,12 +21,12 @@ class DoctorsController < ApplicationController
     if admin_user?
       doctor = Doctor.find(params[:id])
       if doctor.destroy
-        render json: {message: "Doctor deleted successfully"}, status: :ok
+        render json: { message: 'Doctor deleted successfully' }, status: :ok
       else
-        render json: {error: "Unable to delete doctor"}, status: :unprocessable_entity
+        render json: { error: 'Unable to delete doctor' }, status: :unprocessable_entity
       end
     else
-      render json: {error: "You are not admin"}, status: :unauthorized
+      render json: { error: 'You are not admin' }, status: :unauthorized
     end
   end
 
