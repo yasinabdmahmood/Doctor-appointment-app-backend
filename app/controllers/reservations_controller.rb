@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = current_user.reservations.build(reservation_params)
+    @reservation = @current_user.reservations.build(reservation_params)
     if @reservation.save
       render json: @reservation, status: :created
     else
@@ -18,5 +18,4 @@ class ReservationsController < ApplicationController
   def reservation_params
     params.require(:reservation).permit(:doctor_id, :date, :city)
   end
-
 end
