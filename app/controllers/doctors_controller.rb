@@ -17,7 +17,18 @@ class DoctorsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    if admin_user?
+      doctor = Doctor.find(params[:id])
+      if doctor.destroy
+        render json: {message: "Doctor deleted successfully"}, status: :ok
+      else
+        render json: {error: "Unable to delete doctor"}, status: :unprocessable_entity
+      end
+    else
+      render json: {error: "You are not admin"}, status: :unauthorized
+    end
+  end
 
   private
 
