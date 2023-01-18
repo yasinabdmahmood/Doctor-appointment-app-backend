@@ -8,7 +8,7 @@ class DoctorsController < ApplicationController
     doctor = Doctor.new(user_params)
     if admin_user?
       if doctor.save
-        render json: { status: 'success', message: 'Doctor created successfully' }, status: :created
+        render json: doctor.to_json, status: :created
       else
         render json: { status: 'error', errors: doctor.errors }, status: :unprocessable_entity
       end
