@@ -3,9 +3,9 @@ class AuthenticationController < ApplicationController
 
   # POST /auth/login
   def login
-    @user = User.find_by_email(params[:email])
+    @user = Account.find_by_email(params[:email])
     if @user&.authenticate(params[:password])
-      token = jwt_encode(user_id: @user.id)
+      token = jwt_encode(account_id: @user.id)
       is_admin = admin_user?
       render json: { token:, is_admin: }, status: :ok
     else
@@ -17,7 +17,7 @@ class AuthenticationController < ApplicationController
 
   def admin_user?
     current_user_id = @user.id
-    admin = Admin.find_by(user_id: current_user_id)
+    admin = Admin.find_by(account_id: current_user_id)
     admin.present?
   end
 end

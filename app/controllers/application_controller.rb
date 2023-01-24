@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
 
     decoded = jwt_decode(header)
 
-    @current_user = User.find(decoded[:user_id])
+    @current_user = Account.find(decoded[:account_id])
   end
 end

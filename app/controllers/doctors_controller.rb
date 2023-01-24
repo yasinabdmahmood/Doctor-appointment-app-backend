@@ -38,7 +38,7 @@ class DoctorsController < ApplicationController
 
   def admin_user?
     current_user_id = @current_user.id
-    admin = Admin.find_by(user_id: current_user_id)
+    admin = Admin.find_by(account_id: current_user_id)
     admin.present?
   end
 end
