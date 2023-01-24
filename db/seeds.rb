@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-users = User.create([
+accounts = Account.create([
     {
         name: 'user1',
         username: 'username1',
@@ -22,7 +22,7 @@ users = User.create([
 
 admins = Admin.create([
     {
-        user: users[0]
+        account: accounts[0]
     }
 ])
 
@@ -45,25 +45,25 @@ reservations = Reservation.create([
     {
         city: 'Berlin',
         date: '2023/5/1',
-        user: users[0],
+        account: accounts[0],
         doctor: doctors[0]
     },
     {
         city: 'New-York',
         date: '2023/5/2',
-        user: users[0],
+        account: accounts[0],
         doctor: doctors[1]
     },
     {
         city: 'Madrid',
         date: '2023/5/3',
-        user: users[1],
+        account: accounts[1],
         doctor: doctors[0]
     },
     {
         city: 'Paris',
         date: '2023/5/4',
-        user: users[1],
+        account: accounts[1],
         doctor: doctors[1]
     },
 ])
