@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create, :index]
+  skip_before_action :authenticate_request, only: %i[create index]
   before_action :set_user, only: %i[show destroy]
 
   # GET /users
