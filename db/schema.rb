@@ -14,11 +14,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_143008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "isAdmin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_admins_on_user_id"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_admins_on_account_id"
   end
 
   create_table "doctors", force: :cascade do |t|
@@ -34,23 +44,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_143008) do
     t.string "city"
     t.date "date"
     t.bigint "doctor_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_reservations_on_account_id"
     t.index ["doctor_id"], name: "index_reservations_on_doctor_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
-    t.boolean "isAdmin", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  add_foreign_key "reservations", "accounts"
   add_foreign_key "reservations", "doctors"
-  add_foreign_key "reservations", "users"
 end

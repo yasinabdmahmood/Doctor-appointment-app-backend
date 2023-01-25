@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Account < ApplicationRecord
   require 'securerandom'
   has_secure_password
   has_many :reservations, dependent: :destroy

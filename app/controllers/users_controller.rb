@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create]
+  skip_before_action :authenticate_request, only: %i[create index]
   before_action :set_user, only: %i[show destroy]
 
   # GET /users
   def index
-    @users = User.all
+    @users = Account.all
     render json: @users, status: :ok
   end
 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = Account.new(user_params)
     if @user.save
       render json: @user, status: :created
     else
@@ -43,6 +43,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = Account.find(params[:id])
   end
 end
