@@ -46,24 +46,24 @@ reservations = Reservation.create([
         city: 'Berlin',
         date: '2023/5/1',
         account: accounts[0],
-        doctor: doctors[0]
+        doctor: doctors[0],
     },
     {
         city: 'New-York',
         date: '2023/5/2',
         account: accounts[0],
-        doctor: doctors[1]
+        doctor: doctors[1],
     },
     {
         city: 'Madrid',
         date: '2023/5/3',
         account: accounts[1],
-        doctor: doctors[0]
+        doctor: doctors[0],
     },
     {
         city: 'Paris',
         date: '2023/5/4',
         account: accounts[1],
-        doctor: doctors[1]
+        doctor: doctors[1],
     },
 ])
