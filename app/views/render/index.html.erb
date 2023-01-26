@@ -1,2 +1,261 @@
-<h1>Render#index</h1>
-<p>Find me in app/views/render/index.html.erb</p>
+<h1 id="doctors-appointment">Doctors Appointment</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The following API documentation outlines the endpoints for a doctor appointment scheduling application. The endpoints include the ability to register a new user, login, view available doctors, schedule appointments, and view upcoming appointments for a logged in user. Each endpoint includes the relevant URL, HTTP method, expected data in the request body (if applicable), and the expected response in JSON format. Example code is also provided for reference on how to use the endpoint in a JavaScript application using the axios library.</p>
+<h2 id="authentication">Authentication</h2>
+<p>The API documentation outlined above includes two endpoints that handle authentication, specifically &quot;Register new user&quot; and &quot;Login&quot;. When a user logs in successfully, they will receive a JSON response that includes a token. This token should be saved by the user and included in the header of every subsequent request to access protected endpoints.</p>
+<h2 id="end-points">End points</h2>
+<ul>
+<li><p><strong>Register new user</strong> : This end point is used to sign up a new user</p>
+<ul>
+<li>Endpoint: <a href="https://doctor-appointment-hbcv.onrender.com/users">https://doctor-appointment-hbcv.onrender.com/users</a></li>
+<li>Method: POST</li>
+<li><p>Request Body: JSON data including name, username, email, and password</p>
+<pre><code class="lang-javascript">{
+ <span class="hljs-attribute">name</span>: <span class="hljs-string">'Ali'</span>,
+ username: <span class="hljs-string">'ALI_M'</span>,
+ email: <span class="hljs-string">"ali123@gmail.com"</span>,
+ password: <span class="hljs-string">"123456"</span>
+}
+</code></pre>
+</li>
+<li><p>Response: JSON data including id, name, username, email, password_digest, isAdmin, created_at, and updated_at</p>
+</li>
+<li>Example Response:<pre><code>{
+ <span class="hljs-attr">"id"</span>: <span class="hljs-number">4</span>,
+ <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Ali"</span>,
+ <span class="hljs-attr">"username"</span>: <span class="hljs-string">"ALI_M"</span>,
+ <span class="hljs-attr">"email"</span>: <span class="hljs-string">"ali123@gmail.com"</span>,
+ <span class="hljs-attr">"password_digest"</span>: <span class="hljs-string">"$2a$12$kuXk5y71wUjnTrzZTOnVfOC33IhEtnyC4oOoAWNd8imUf5tZxFegC"</span>,
+ <span class="hljs-attr">"isAdmin"</span>: <span class="hljs-literal">false</span>,
+ <span class="hljs-attr">"created_at"</span>: <span class="hljs-string">"2023-01-24T16:59:26.977Z"</span>,
+ <span class="hljs-attr">"updated_at"</span>: <span class="hljs-string">"2023-01-24T16:59:26.977Z"</span>
+}
+</code></pre></li>
+<li>Example Code:<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+axios.post(<span class="hljs-string">'https://doctor-appointment-hbcv.onrender.com/users'</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">'John Smith'</span>, <span class="hljs-attr">username</span>: <span class="hljs-string">'testusername'</span>, <span class="hljs-attr">email</span>: <span class="hljs-string">"john@gmail"</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">"123456"</span>})
+.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(response.data);
+})
+.catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(error);
+});
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Login</strong> : This end point is used to login </p>
+<ul>
+<li>Endpoint: <a href="https://doctor-appointment-hbcv.onrender.com/auth/login">https://doctor-appointment-hbcv.onrender.com/auth/login</a></li>
+<li>Method: POST</li>
+<li><p>Request Body: JSON data including name, username, email, and password</p>
+<pre><code class="lang-javascript">{
+ <span class="hljs-attribute">email</span>: <span class="hljs-string">"ali123@gmail.com"</span>,
+ password: <span class="hljs-string">"123456"</span>
+}
+</code></pre>
+</li>
+<li><p>Response: JSON data including token and is_admin</p>
+</li>
+<li>Example Response:<pre><code>{
+ <span class="hljs-attr">"token"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjoyLCJleHAiOjE2NzUxODMzMzN9.QaXuISDXN2axaUa7Zu1uiuVkDAbVtp4Ce21MteJvyjQ"</span>,
+ <span class="hljs-attr">"is_admin"</span>: <span class="hljs-literal">true</span>
+}
+</code></pre></li>
+<li>Example Code:<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+axios.post(<span class="hljs-string">'https://doctor-appointment-hbcv.onrender.com/auth/login'</span>, {<span class="hljs-attr">email</span>: <span class="hljs-string">"user1@gmail.com"</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">"123456"</span>})
+.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(response.data);
+})
+.catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(error);
+});
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Get doctors</strong> : this end point returns a list of available doctors</p>
+<ul>
+<li>Endpoint: <a href="https://doctor-appointment-hbcv.onrender.com/doctors">https://doctor-appointment-hbcv.onrender.com/doctors</a></li>
+<li><p>Method: GET</p>
+</li>
+<li><p>Response: JSON data including of doctors with thier details</p>
+</li>
+<li>Example Response:<pre><code>[
+ {
+     <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+     <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doctor1"</span>,
+     <span class="hljs-attr">"picture"</span>: <span class="hljs-string">"picture1"</span>,
+     <span class="hljs-attr">"speciality"</span>: <span class="hljs-string">"speciality1"</span>,
+     <span class="hljs-attr">"bio"</span>: <span class="hljs-string">"bio1"</span>,
+     <span class="hljs-attr">"created_at"</span>: <span class="hljs-string">"2023-01-24T16:31:24.320Z"</span>,
+     <span class="hljs-attr">"updated_at"</span>: <span class="hljs-string">"2023-01-24T16:31:24.320Z"</span>
+ },
+ {
+     <span class="hljs-attr">"id"</span>: <span class="hljs-number">2</span>,
+     <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doctor2"</span>,
+     <span class="hljs-attr">"picture"</span>: <span class="hljs-string">"picture2"</span>,
+     <span class="hljs-attr">"speciality"</span>: <span class="hljs-string">"speciality2"</span>,
+     <span class="hljs-attr">"bio"</span>: <span class="hljs-string">"bio2"</span>,
+     <span class="hljs-attr">"created_at"</span>: <span class="hljs-string">"2023-01-24T16:31:24.327Z"</span>,
+     <span class="hljs-attr">"updated_at"</span>: <span class="hljs-string">"2023-01-24T16:31:24.327Z"</span>
+ },
+ {
+     <span class="hljs-attr">"id"</span>: <span class="hljs-number">3</span>,
+     <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doctor1"</span>,
+     <span class="hljs-attr">"picture"</span>: <span class="hljs-string">"picture1"</span>,
+     <span class="hljs-attr">"speciality"</span>: <span class="hljs-string">"speciality1"</span>,
+     <span class="hljs-attr">"bio"</span>: <span class="hljs-string">"bio1"</span>,
+     <span class="hljs-attr">"created_at"</span>: <span class="hljs-string">"2023-01-24T16:58:28.761Z"</span>,
+     <span class="hljs-attr">"updated_at"</span>: <span class="hljs-string">"2023-01-24T16:58:28.761Z"</span>
+ },
+ {
+     <span class="hljs-attr">"id"</span>: <span class="hljs-number">4</span>,
+     <span class="hljs-attr">"name"</span>: <span class="hljs-string">"doctor2"</span>,
+     <span class="hljs-attr">"picture"</span>: <span class="hljs-string">"picture2"</span>,
+     <span class="hljs-attr">"speciality"</span>: <span class="hljs-string">"speciality2"</span>,
+     <span class="hljs-attr">"bio"</span>: <span class="hljs-string">"bio2"</span>,
+     <span class="hljs-attr">"created_at"</span>: <span class="hljs-string">"2023-01-24T16:58:28.813Z"</span>,
+     <span class="hljs-attr">"updated_at"</span>: <span class="hljs-string">"2023-01-24T16:58:28.813Z"</span>
+ }
+]
+</code></pre></li>
+<li>Example Code:<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+axios.defaults.headers.common[<span class="hljs-string">'Authorization'</span>] = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;
+axios.get(<span class="hljs-string">'https://doctor-appointment-hbcv.onrender.com/doctors'</span>)
+.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(response.data);
+})
+.catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(error);
+});
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Create new doctor</strong> : this end point is responsible for creating a new doctor</p>
+<blockquote>
+<p><strong>Important note</strong>
+only admins can create new doctor if you want to create new doctor
+you have to login as admin with the follwing email and password</p>
+<ul>
+<li>email: user1@gmail.com</li>
+<li>password: 123456<ul>
+<li>Endpoint: <a href="https://doctor-appointment-hbcv.onrender.com/doctors">https://doctor-appointment-hbcv.onrender.com/doctors</a></li>
+<li>Method: POST</li>
+<li>Request Body: JSON data including name, picture, speciality, and bio<pre><code class="lang-javascript">{  
+   <span class="hljs-built_in">name</span>: 'John Smith',
+   picture: 'dummy link',
+   speciality: 'Family Medicine',
+   bio: 'Dr. John Smith <span class="hljs-keyword">is</span> a highly skilled <span class="hljs-keyword">and</span> compassionate family physician <span class="hljs-keyword">with</span> <span class="hljs-keyword">over</span> <span class="hljs-number">10</span> years <span class="hljs-keyword">of</span> experience <span class="hljs-keyword">in</span> providing top-notch medical care <span class="hljs-keyword">to</span> patients <span class="hljs-keyword">of</span> all ages. He <span class="hljs-keyword">is</span> dedicated <span class="hljs-keyword">to</span> helping his patients achieve optimal health <span class="hljs-keyword">through</span> preventative care, early diagnosis, <span class="hljs-keyword">and</span> evidence-based treatment. He <span class="hljs-keyword">is</span> also known <span class="hljs-keyword">for</span> his ability <span class="hljs-keyword">to</span> connect <span class="hljs-keyword">with</span> patients <span class="hljs-keyword">on</span> a personal level <span class="hljs-keyword">and</span> <span class="hljs-keyword">for</span> providing a warm <span class="hljs-keyword">and</span> welcoming environment <span class="hljs-keyword">for</span> his patients.\<span class="hljs-string">"\nPlease keep in mind that the above information is purely fictional and any medical advice or treatment should be taken only by a licensed professional.'
+}</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>Response: JSON data including the doctor that has been created along with other details about the doctor</li>
+<li>Example Response:<pre><code>{
+ <span class="hljs-attr">"id"</span>: <span class="hljs-number">5</span>,
+ <span class="hljs-attr">"name"</span>: <span class="hljs-string">"John Smith"</span>,
+ <span class="hljs-attr">"picture"</span>: <span class="hljs-string">"dummy link"</span>,
+ <span class="hljs-attr">"speciality"</span>: <span class="hljs-string">"Family Medicine"</span>,
+ <span class="hljs-attr">"bio"</span>: <span class="hljs-string">"Dr. John Smith is a highly skilled and compassionate family physician with over 10 years of experience in providing top-notch medical care to patients of all ages. He is dedicated to helping his patients achieve optimal health through preventative care, early diagnosis, and evidence-based treatment. He is also known for his ability to connect with patients on a personal level and for providing a warm and welcoming environment for his patients.\"\nPlease keep in mind that the above information is purely fictional and any medical advice or treatment should be taken only by a licensed professional."</span>,
+ <span class="hljs-attr">"created_at"</span>: <span class="hljs-string">"2023-01-24T17:37:57.755Z"</span>,
+ <span class="hljs-attr">"updated_at"</span>: <span class="hljs-string">"2023-01-24T17:37:57.755Z"</span>
+}
+</code></pre></li>
+<li>Example Code:<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+axios.defaults.headers.common[<span class="hljs-string">'Authorization'</span>] = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;
+axios.post(<span class="hljs-string">'https://doctor-appointment-hbcv.onrender.com/doctors'</span>,{<span class="hljs-attr">name</span>: <span class="hljs-string">'test_name'</span>, <span class="hljs-attr">picture</span>: <span class="hljs-string">'test_picture'</span>,<span class="hljs-attr">speciality</span>: <span class="hljs-string">'test_speciality'</span>,<span class="hljs-attr">bio</span>: <span class="hljs-string">'test_bio'</span>})
+.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(response.data);
+})
+.catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(error);
+});
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Get reservations</strong> : This end point returns a list of the reservations the user has created by the logged in user</p>
+<ul>
+<li>Endpoint: <a href="https://doctor-appointment-hbcv.onrender.com/reservations">https://doctor-appointment-hbcv.onrender.com/reservations</a></li>
+<li><p>Method: GET</p>
+</li>
+<li><p>Response: JSON data including the list of all reservations created by the logged-in user</p>
+</li>
+<li>Example Response:<pre><code>[
+{
+ id: <span class="hljs-number">1</span>,
+ city: <span class="hljs-symbol">'Berlin</span>',
+ date: <span class="hljs-symbol">'2023-05-01</span>',
+ doctor_id: <span class="hljs-number">1</span>,
+ account_id: <span class="hljs-number">2</span>,
+ created_at: <span class="hljs-symbol">'2023-01-24T16:31:24.352Z</span>',
+ updated_at: <span class="hljs-symbol">'2023-01-24T16:31:24.352Z</span>'
+},
+{
+ id: <span class="hljs-number">2</span>,
+ city: <span class="hljs-symbol">'New-York</span>',
+ date: <span class="hljs-symbol">'2023-05-02</span>',
+ doctor_id: <span class="hljs-number">2</span>,
+ account_id: <span class="hljs-number">2</span>,
+ created_at: <span class="hljs-symbol">'2023-01-24T16:31:24.360Z</span>',
+ updated_at: <span class="hljs-symbol">'2023-01-24T16:31:24.360Z</span>'
+}
+]
+</code></pre></li>
+<li>Example Code:<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+axios.defaults.headers.common[<span class="hljs-string">'Authorization'</span>] = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;
+axios.get(<span class="hljs-string">'https://doctor-appointment-hbcv.onrender.com/reservations'</span>)
+.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(response.data);
+})
+.catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(error);
+});
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Create reservation</strong> : This end point is responsible for creating reservation for the logged-in user</p>
+<ul>
+<li>Endpoint: <a href="https://doctor-appointment-hbcv.onrender.com/reservations">https://doctor-appointment-hbcv.onrender.com/reservations</a></li>
+<li>Method: POST</li>
+<li><p>Request Body: JSON data including date, city, and doctor_id</p>
+<pre><code class="lang-javascript">{
+ <span class="hljs-attribute">date</span>: <span class="hljs-string">'2022-5-1'</span>,
+ city: <span class="hljs-string">'test_city'</span>,
+ doctor_id: <span class="hljs-number">2</span>
+}
+</code></pre>
+</li>
+<li><p>Response: JSON data including all the details about created reservation</p>
+</li>
+<li>Example Response:<pre><code>{
+<span class="hljs-string">id:</span> <span class="hljs-number">6</span>,
+<span class="hljs-string">city:</span> <span class="hljs-string">'test_city'</span>,
+<span class="hljs-string">date:</span> <span class="hljs-string">'2022-05-01'</span>,
+<span class="hljs-string">doctor_id:</span> <span class="hljs-number">2</span>,
+<span class="hljs-string">account_id:</span> <span class="hljs-number">2</span>,
+<span class="hljs-string">created_at:</span> <span class="hljs-string">'2023-01-24T19:43:53.352Z'</span>,
+<span class="hljs-string">updated_at:</span> <span class="hljs-string">'2023-01-24T19:43:53.352Z'</span>
+}
+</code></pre></li>
+<li>Example Code:<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+axios.defaults.headers.common[<span class="hljs-string">'Authorization'</span>] = <span class="hljs-string">`Bearer <span class="hljs-subst">${token}</span>`</span>;
+axios.post(<span class="hljs-string">'https://doctor-appointment-hbcv.onrender.com/reservations'</span>,{<span class="hljs-attr">date</span>: <span class="hljs-string">'2022-5-1'</span>, <span class="hljs-attr">city</span>: <span class="hljs-string">'test_city'</span>,<span class="hljs-attr">doctor_id</span>: <span class="hljs-number">2</span>})
+.then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(response.data);
+})
+.catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+ <span class="hljs-built_in">console</span>.log(error);
+});
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
