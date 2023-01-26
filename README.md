@@ -144,7 +144,16 @@ cd desired-folder-path
 git clone https://github.com/yasinabdmahmood/Doctor-appointment-app-backend.git
 cd Doctor-appointment-app-backend
 ```
+### Setup for front-end
 
+Clone this repository to your desired folder:
+
+
+```sh
+cd desired-folder-path
+git clone https://github.com/yasinabdmahmood/Doctor-appointment-react.git
+cd Doctor-appointment-react
+```
 
 ### Install
 
