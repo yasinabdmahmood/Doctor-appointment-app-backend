@@ -32,3 +32,6 @@
 
 # ignore node_modules
 node_modules
+
+# ignore test
+/tests
