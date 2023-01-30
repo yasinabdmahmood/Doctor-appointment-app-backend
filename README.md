@@ -107,7 +107,8 @@ you can find the API Documentation [here](https://github.com/yasinabdmahmood/Doc
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 
-- [Live Demo Link](https://doctor-appointment-hbcv.onrender.com)
+- [Live Demo Link For Back-end(Rails)](https://doctor-appointment-hbcv.onrender.com)
+- [Live Demo Link For Front-end(React)](https://deft-horse-ba21a0.netlify.app/login)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
